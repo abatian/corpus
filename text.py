@@ -3,19 +3,8 @@ import bisect
 import collections
 import random
 
+
 path = "/Users/abatian/Downloads/corpus/"
-
-first_input = open('first_C.pkl', 'rb') 
-first = pickle.load(first_input) 
-first_input.close()
-
-words_input = open('words_C.pkl', 'rb') 
-words = pickle.load(words_input) 
-words_input.close()
-
-pairs_input = open('pairs_C.pkl', 'rb') 
-pairs = pickle.load(pairs_input) 
-pairs_input.close()
 
 class WeightedChoice(collections.Sequence):
     def __init__(self, counter):
@@ -54,18 +43,29 @@ def make_sentence():
 		sentence += third_word
 	return sentence, num
 
-
 def make_text(words_num):
 	text = ""
+	words_num += .0
 	cur_num = 0
 	f = open("my_book.txt", "w")
 	while cur_num < words_num:
 		sentence, num = make_sentence()
 		cur_num += num
-		print sentence
-		print cur_num
 		f.write(sentence)
 		f.write(" ")
 	f.close()
 
-make_text(10010)
+if __name__ == '__main__':
+	first_input = open('first_C.pkl', 'rb') 
+	first = pickle.load(first_input) 
+	first_input.close()
+
+	words_input = open('words_C.pkl', 'rb') 
+	words = pickle.load(words_input) 
+	words_input.close()
+
+	pairs_input = open('pairs_C.pkl', 'rb') 
+	pairs = pickle.load(pairs_input) 
+	pairs_input.close()
+
+	make_text(10010)

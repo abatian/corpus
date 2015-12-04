@@ -2,10 +2,8 @@
 import os
 import re
 import collections
-import json
 import cPickle as pickle
 import sys
-import codecs
 
 
 path = "/Users/abatian/Downloads/corpus/"
@@ -21,8 +19,6 @@ def make_stats():
                 f = open(dirpath + "/" + filename, 'r')
                 book = f.read()
                 book = book.replace('’', "'")
-                #rgx = re.compile("([^\s,]+|\.)")
-                #rgx = re.compile("([a-zA-Z'-\.0-9]+)")
                 rgx = re.compile("([\w]+['-]?[\w]*[,]?|\.|\?|!)")
                 words = rgx.findall(book)
                 for idx in range(len(words)-2):
@@ -60,7 +56,8 @@ def make_stats():
     pickle.dump(pairs_counter, f, 2)
     f.close()
 
-make_stats()
+if __name__ == '__main__':
+    make_stats()
 
 
 
